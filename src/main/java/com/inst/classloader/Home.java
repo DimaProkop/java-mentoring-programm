@@ -1,4 +1,4 @@
-package com.inst;
+package com.inst.classloader;
 
 import org.apache.log4j.Logger;
 
