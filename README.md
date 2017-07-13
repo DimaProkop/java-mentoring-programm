@@ -1,6 +1,6 @@
 ## java-mentoring-programm
-`Implemented modules that passed the review will be deleted`
-  # **Modules**
+# `Implemented modules that passed the review will be ` ~~deleted~~
+# **Modules**
 1. Java: Classloading, Memory Management, Garbage Collection
 2. Java: Multithreading - classic model and concurrency
 3. Design and Architecture: Principle of software development
