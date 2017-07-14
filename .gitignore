@@ -24,3 +24,7 @@ hs_err_pid*
 .gradle/
 Would skip repository https:/github.com/DimaProkop/java-mentoring-programm.git
 target/
+/.idea/compiler.xml
+/.idea/misc.xml
+/.idea/modules.xml
+/.idea/vcs.xml
