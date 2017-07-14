@@ -12,7 +12,7 @@ import org.hibernate.Session;
 import java.util.Scanner;
 
 /**
- * Created by Dmitry.
+ * Menu will be reworked.
  */
 public class Home {
 
