@@ -18,7 +18,6 @@ public class SessionManager {
     private static SessionManager sessionManager;
     private static SessionFactory sessionFactory;
 
-
     public static SessionManager getInstance() {
         if (sessionManager == null) {
             sessionManager = new SessionManager();
@@ -28,7 +27,7 @@ public class SessionManager {
 
     public Session getSession() {
         if (sessionFactory != null) {
-            return sessionFactory.getCurrentSession();
+            return sessionFactory.openSession();
         } else {
             Configuration configuration = new Configuration();
             configuration.configure();

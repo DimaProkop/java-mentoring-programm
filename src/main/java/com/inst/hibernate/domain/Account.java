@@ -17,6 +17,9 @@ public class Account extends PersistObject implements Serializable {
     @Column
     private int money;
 
+    @ManyToOne
+    private Client client;
+
     public Account() {
     }
 
@@ -38,5 +41,13 @@ public class Account extends PersistObject implements Serializable {
 
     public void setMoney(int money) {
         this.money = money;
+    }
+
+    public Client getClient() {
+        return client;
+    }
+
+    public void setClient(Client client) {
+        this.client = client;
     }
 }

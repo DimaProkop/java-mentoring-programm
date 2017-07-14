@@ -26,12 +26,13 @@ public class Home {
     public static void main(String[] args) {
         Initializer initializer = new InitializerImpl();
         initializer.init();
-        System.out.println("Select the item: \n1. Add client \n2. Get client name \n3. Add account to client\n4. Exit");
+        System.out.println("Select the item: \n1. Add client \n2. Get client name \n3. Add account\n4. Add account to client\n5. Exit");
+        String str = "";
         switch (scanner.next()) {
             case "1":
                 System.out.println("Enter your name: ");
                 Client newClient = new Client();
-                String str = scanner.next();
+                str = scanner.next();
                 if ("".equals(str)) {
                     System.out.println(INCORRECT_MESSAGE);
                 } else {
@@ -43,11 +44,11 @@ public class Home {
             case "2":
                 System.out.println("Enter ID: ");
                 Client client = null;
-                String str1 = scanner.next();
-                if ("".equals(str1)) {
+                str = scanner.next();
+                if ("".equals(str)) {
                     System.out.println(INCORRECT_MESSAGE);
                 } else {
-                    client = initializer.getClient(Long.parseLong(str1));
+                    client = initializer.getClient(Long.parseLong(str));
                     if (client != null) {
                         initializer.addAccountToClient(new Account(250), client);
                         System.out.println("NAME ---> " + client.getName());
@@ -57,7 +58,48 @@ public class Home {
                     }
                 }
                 break;
+            case "3":
+                System.out.println("give me your money :D  ----> ");
+                Account newAccount = new Account();
+                str = scanner.next();
+                if ("".equals(str)) {
+                    System.out.println(INCORRECT_MESSAGE);
+                } else {
+                    newAccount.setMoney(Integer.parseInt(str));
+                    initializer.addAccount(newAccount);
+                    System.out.println(SUCCESSFUL_MESSAGE);
+                }
+                break;
             case "4":
+                System.out.println("Enter ID client: ");
+                Client fClient = null;
+                str = scanner.next();
+                if ("".equals(str)) {
+                    System.out.println(INCORRECT_MESSAGE);
+                } else {
+                    fClient = initializer.getClient(Long.parseLong(str));
+                    if (fClient != null) {
+                        System.out.println("Enter ID your account: ");
+                        Account fAccount = null;
+                        str = scanner.next();
+                        if ("".equals(str)) {
+                            System.out.println(INCORRECT_MESSAGE);
+                        } else {
+                            fAccount = initializer.getAccount(Long.parseLong(str));
+                            if(fAccount != null) {
+                                initializer.addAccountToClient(fAccount, fClient);
+                            }else {
+                                logger.info("Account with such ID does not exist!");
+                                System.out.println("Account with such ID does not exist!");
+                            }
+                        }
+                    } else {
+                        logger.info("Client with such ID does not exist!");
+                        System.out.println("Client with such ID does not exist!");
+                    }
+                }
+                break;
+            case "5":
                 System.exit(0);
             default:
                 System.exit(0);

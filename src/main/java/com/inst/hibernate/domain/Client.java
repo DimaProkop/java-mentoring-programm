@@ -25,7 +25,7 @@ public class Client extends PersistObject implements Serializable {
     @Column
     private String name;
 
-    @OneToMany(fetch = FetchType.EAGER)
+    @OneToMany(mappedBy = "client")
     private List<Account> accounts;
 
     public Client() {
