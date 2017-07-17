@@ -25,7 +25,7 @@ public class Client extends PersistObject implements Serializable {
     @Column
     private String name;
 
-    @OneToMany(mappedBy = "client")
+    @OneToMany(fetch = FetchType.EAGER, mappedBy = "client", cascade = CascadeType.ALL)
     private List<Account> accounts;
 
     public Client() {
@@ -60,20 +60,22 @@ public class Client extends PersistObject implements Serializable {
         this.id = id;
     }
 
-    public List<Account> addAccount(Account account) {
+    public Account addAccount(Account account) {
         if (accounts == null) {
-            accounts = new ArrayList<Account>();
+            accounts = new ArrayList<>();
         } else {
             if (account == null) {
                 logger.info("Account is null");
             } else {
                 try {
+                    //not safe
+                    account.setClient(this);
                     accounts.add(account);
                 } catch (Exception e) {
                     logger.info(e.getMessage());
                 }
             }
         }
-        return accounts;
+        return account;
     }
 }

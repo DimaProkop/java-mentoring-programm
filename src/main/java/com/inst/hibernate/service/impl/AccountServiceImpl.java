@@ -8,6 +8,7 @@ import com.inst.hibernate.util.SessionManager;
 import org.apache.log4j.LogManager;
 import org.apache.log4j.Logger;
 import org.hibernate.Session;
+import org.hibernate.Transaction;
 
 import java.util.List;
 
@@ -37,8 +38,10 @@ public class AccountServiceImpl implements AccountService {
 
     public void update(Account account) {
         Session session = SessionManager.getInstance().getSession();
+        Transaction transaction = session.beginTransaction();
         try {
-            accountRepository.add(session, account);
+            accountRepository.update(session, account);
+            transaction.commit();
         } catch (Exception e) {
             logger.error(e.getMessage());
         } finally {
@@ -48,8 +51,10 @@ public class AccountServiceImpl implements AccountService {
 
     public void delete(Account account) {
         Session session = SessionManager.getInstance().getSession();
+        Transaction transaction = session.beginTransaction();
         try {
-            accountRepository.add(session, account);
+            accountRepository.delete(session, account);
+            transaction.commit();
         } catch (Exception e) {
             logger.error(e.getMessage());
         } finally {

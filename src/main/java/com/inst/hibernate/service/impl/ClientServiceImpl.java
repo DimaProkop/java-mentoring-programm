@@ -52,8 +52,10 @@ public class ClientServiceImpl implements ClientService {
 
     public void delete(Client client) {
         Session session = SessionManager.getInstance().getSession();
+        Transaction transaction = session.beginTransaction();
         try {
             clientRepository.delete(session, client);
+            transaction.commit();
         } catch (Exception e) {
             logger.error(e.getMessage());
         } finally {
@@ -82,9 +84,9 @@ public class ClientServiceImpl implements ClientService {
                 accountRepository.add(session, account);
                 transaction.commit();
             } else {
-                client.addAccount(account);
+                account = client.addAccount(account);
+                accountRepository.update(session, account);
             }
-            session = SessionManager.getInstance().getSession();
             clientRepository.update(session, client);
             transaction.commit();
         } catch (Exception e) {

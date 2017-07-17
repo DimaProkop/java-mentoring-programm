@@ -15,7 +15,7 @@ import com.inst.hibernate.service.impl.ClientServiceImpl;
 import java.util.List;
 
 /**
- * Created by Dmitry.
+ * Init all services
  */
 public class InitializerImpl implements Initializer{
 

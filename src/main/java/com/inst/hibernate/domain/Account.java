@@ -18,6 +18,7 @@ public class Account extends PersistObject implements Serializable {
     private int money;
 
     @ManyToOne
+    @JoinColumn(name = "client_id")
     private Client client;
 
     public Account() {
