@@ -1,7 +1,7 @@
-package com.inst.hibernate.repository.impl;
+package com.inst.hibernate.repository.sql.impl;
 
 import com.inst.hibernate.domain.Client;
-import com.inst.hibernate.repository.ClientRepository;
+import com.inst.hibernate.repository.sql.ClientRepository;
 
 /**
  * Created by Dmitry.

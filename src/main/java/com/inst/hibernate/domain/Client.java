@@ -1,10 +1,15 @@
 package com.inst.hibernate.domain;
 
-import com.inst.hibernate.repository.impl.AbstractRepositoryImpl;
 import org.apache.log4j.LogManager;
 import org.apache.log4j.Logger;
+import org.bson.types.ObjectId;
+import org.mongodb.morphia.annotations.*;
+import org.mongodb.morphia.annotations.Index;
+import org.mongodb.morphia.annotations.Transient;
 
 import javax.persistence.*;
+import javax.persistence.Entity;
+import javax.persistence.Id;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
@@ -12,8 +17,8 @@ import java.util.List;
 /**
  * Created by Dmitry.
  */
-@Table
-@Entity(name = "client")
+@Entity
+@Table(name = "client")
 public class Client extends PersistObject implements Serializable {
 
     private static final Logger logger = LogManager.getLogger(Client.class);
@@ -26,6 +31,7 @@ public class Client extends PersistObject implements Serializable {
     private String name;
 
     @OneToMany(fetch = FetchType.EAGER, mappedBy = "client", cascade = CascadeType.ALL)
+    @Reference
     private List<Account> accounts;
 
     public Client() {
@@ -48,7 +54,7 @@ public class Client extends PersistObject implements Serializable {
         return accounts;
     }
 
-    public void setAccount(List<Account> accounts) {
+    public void setAccounts(List<Account> accounts) {
         this.accounts = accounts;
     }
 

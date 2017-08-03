@@ -10,17 +10,19 @@ import java.util.List;
  */
 public interface ClientService {
 
-    void add(Client client);
+    void switchDB(final boolean flag);
 
-    void update(Client client);
+    void add(final Client client);
 
-    void delete(Client client);
+    void update(final Client oldClient, final Client client);
 
-    Client get(Long id);
+    void delete(final Client client);
 
-    void addAccount(Account account, Client client);
+    Client get(final Long id, String name);
+
+    void addAccount(final Account account,final Client client);
 
     List<Client> getAll();
 
-    List<Account> getAccountsByIdClient(Long id);
+    List<Account> getAccountsByIdClient(final Long id);
 }

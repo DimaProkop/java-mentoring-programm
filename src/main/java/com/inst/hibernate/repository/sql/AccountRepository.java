@@ -1,4 +1,4 @@
-package com.inst.hibernate.repository;
+package com.inst.hibernate.repository.sql;
 
 import com.inst.hibernate.domain.Account;
 

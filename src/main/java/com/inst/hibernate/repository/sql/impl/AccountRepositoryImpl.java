@@ -1,8 +1,7 @@
-package com.inst.hibernate.repository.impl;
+package com.inst.hibernate.repository.sql.impl;
 
 import com.inst.hibernate.domain.Account;
-import com.inst.hibernate.repository.AbstractRepository;
-import com.inst.hibernate.repository.AccountRepository;
+import com.inst.hibernate.repository.sql.AccountRepository;
 
 /**
  * Created by Dmitry.

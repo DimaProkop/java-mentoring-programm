@@ -10,30 +10,32 @@ import java.util.List;
  */
 public interface Initializer {
 
+    void switchDB(final boolean flag);
+
     void init();
 
     //accounts
-    void addAccount(Account account);
+    void addAccount(final Account account);
 
-    void deleteAccount(Account account);
+    void deleteAccount(final Account account);
 
-    void updateAccount(Account account);
+    void updateAccount(final Account oldAccount,final Account account);
 
-    Account getAccount(Long id);
+    Account getAccount(final Long id,final String name);
 
     List<Account> getAllAccounts();
 
-    void addClient(Client client);
+    void addClient(final Client client);
 
-    void updateClient(Client client);
+    void updateClient(final Client oldClient,final Client client);
 
-    void deleteClient(Client client);
+    void deleteClient(final Client client);
 
-    void addAccountToClient(Account account, Client client);
+    void addAccountToClient(final Account account,final Client client);
 
-    Client getClient(Long id);
+    Client getClient(final Long id,final String name);
 
     List<Client> getAllClient();
 
-    List<Account> getAccountsByIdClient(Long id);
+    List<Account> getAccountsByIdClient(final Long id);
 }

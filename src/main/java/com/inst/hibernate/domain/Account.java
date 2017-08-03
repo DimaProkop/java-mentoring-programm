@@ -1,6 +1,13 @@
 package com.inst.hibernate.domain;
 
+import org.bson.types.ObjectId;
+import org.mongodb.morphia.annotations.*;
+import org.mongodb.morphia.annotations.Index;
+import org.mongodb.morphia.annotations.Transient;
+
 import javax.persistence.*;
+import javax.persistence.Entity;
+import javax.persistence.Id;
 import java.io.Serializable;
 
 /**
@@ -19,6 +26,7 @@ public class Account extends PersistObject implements Serializable {
 
     @ManyToOne
     @JoinColumn(name = "client_id")
+    @Reference
     private Client client;
 
     public Account() {

@@ -10,13 +10,15 @@ import java.util.List;
  */
 public interface AccountService {
 
-    void add(Account account);
+    void switchDB(final boolean flag);
 
-    void update(Account account);
+    void add(final Account account);
 
-    void delete(Account account);
+    void update(Account oldAccount, Account account);
 
-    Account get(Long id);
+    void delete(final Account account);
+
+    Account get(Long id, String name);
 
     List<Account> getAll();
 }
