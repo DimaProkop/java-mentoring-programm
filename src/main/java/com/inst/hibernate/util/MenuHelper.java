@@ -12,7 +12,7 @@ import java.util.List;
 public class MenuHelper {
 
     public static boolean showAll(Initializer initializer) {
-        List<Client> clients = initializer.getAllClient();
+        List<Client> clients = initializer.getAllClients();
         boolean answer = false;
         if (clients.size() != 0) {
             clients.forEach(c -> {
@@ -46,7 +46,7 @@ public class MenuHelper {
     }
 
     public static boolean showClients(Initializer initializer) {
-        List<Client> clients = initializer.getAllClient();
+        List<Client> clients = initializer.getAllClients();
         boolean answer = false;
         if (clients.size() != 0) {
             clients.forEach(c -> System.out.println("ID: " + c.getId() + "| Name: " + c.getName()));

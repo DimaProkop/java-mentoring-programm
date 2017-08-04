@@ -33,9 +33,9 @@ public class MongoManager {
         return mongoClient;
     }
 
-    public DB getDB() {
+    public DB getDB(String databaseName) {
         if(db == null) {
-            db = getMongoClient().getDB(DB_NAME);
+            db = getMongoClient().getDB(databaseName == null ? DB_NAME : databaseName);
             if(db.getCollection(Account.class.getSimpleName()) == null) {
                 db.createCollection(Account.class.getSimpleName(), new BasicDBObject());
             }else if(db.getCollection(Client.class.getSimpleName()) == null) {

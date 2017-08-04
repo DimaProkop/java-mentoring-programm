@@ -35,7 +35,7 @@ public interface Initializer {
 
     Client getClient(final Long id,final String name);
 
-    List<Client> getAllClient();
+    List<Client> getAllClients();
 
     List<Account> getAccountsByIdClient(final Long id);
 }

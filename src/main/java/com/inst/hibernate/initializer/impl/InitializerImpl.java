@@ -48,7 +48,7 @@ public class InitializerImpl implements Initializer {
     }
 
     private DBCollection getCollection(final String nameCollection) {
-        return MongoManager.getInstance().getDB().getCollection(nameCollection);
+        return MongoManager.getInstance().getDB(null).getCollection(nameCollection);
     }
 
     public void addAccount(final Account account) {
@@ -92,7 +92,7 @@ public class InitializerImpl implements Initializer {
         return clientService.get(id, name);
     }
 
-    public List<Client> getAllClient() {
+    public List<Client> getAllClients() {
         return clientService.getAll();
     }
 
