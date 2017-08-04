@@ -17,7 +17,7 @@ public class MongoManager {
 
     private static final String LOCALHOST = "localhost";
     private static final int PORT = 27017;
-    private static final String DB_NAME = "myDB";
+    private static final String DB_NAME = "newDB";
 
     public static MongoManager getInstance() {
         if (manager == null) {
@@ -35,7 +35,7 @@ public class MongoManager {
 
     public DB getDB() {
         if(db == null) {
-            db = (DB) getMongoClient().getDB(DB_NAME);
+            db = getMongoClient().getDB(DB_NAME);
             if(db.getCollection(Account.class.getSimpleName()) == null) {
                 db.createCollection(Account.class.getSimpleName(), new BasicDBObject());
             }else if(db.getCollection(Client.class.getSimpleName()) == null) {

@@ -6,15 +6,14 @@ import com.inst.hibernate.initializer.Initializer;
 
 import java.util.List;
 
-import static com.inst.hibernate.Main.main;
-
 /**
  * Created by Dmitry.
  */
 public class MenuHelper {
 
-    public static void showAll(Initializer initializer, String[] args) {
+    public static boolean showAll(Initializer initializer) {
         List<Client> clients = initializer.getAllClient();
+        boolean answer = false;
         if (clients.size() != 0) {
             clients.forEach(c -> {
                 System.out.println("ID: " + c.getId() + "| Name: " + c.getName());
@@ -27,29 +26,34 @@ public class MenuHelper {
                 }
             });
         } else {
+            answer = true;
             System.out.println("Clients not exist!");
-            main(args);
         }
+        return answer;
     }
 
-    public static void showAccounts(Initializer initializer, String[] args) {
+    public static boolean showAccounts(Initializer initializer) {
         List<Account> accounts = initializer.getAllAccounts();
+        boolean answer = false;
         if (accounts.size() != 0) {
             accounts.forEach(a -> System.out.println("ID: " + a.getId() + "| Money: " + a.getMoney()));
             System.out.println("-------------------------------");
         } else {
             System.out.println("Accounts not exist!");
-            main(args);
+            answer = true;
         }
+        return answer;
     }
 
-    public static void showClients(Initializer initializer, String[] args) {
+    public static boolean showClients(Initializer initializer) {
         List<Client> clients = initializer.getAllClient();
+        boolean answer = false;
         if (clients.size() != 0) {
             clients.forEach(c -> System.out.println("ID: " + c.getId() + "| Name: " + c.getName()));
         } else {
             System.out.println("Clients not exist!");
-            main(args);
+            answer = true;
         }
+        return answer;
     }
 }

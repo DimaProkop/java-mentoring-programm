@@ -81,7 +81,7 @@ public class AccountServiceImpl implements AccountService {
         }
     }
 
-    public Account get(final Long id,final String name) {
+    public Account get(final Long id, String name) {
         Account account = null;
         Session session = SessionManager.getInstance().getSession();
         try {

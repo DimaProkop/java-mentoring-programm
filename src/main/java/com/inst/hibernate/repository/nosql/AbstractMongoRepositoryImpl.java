@@ -27,7 +27,7 @@ public class AbstractMongoRepositoryImpl<T extends PersistObject> {
     public BasicDBObject getByName(final String name) {
         BasicDBObject query = new BasicDBObject();
         if(Account.class.getSimpleName().equals(collection.getName())) {
-            query.put("client", name);
+            query.put("money", Integer.parseInt(name));
         }else {
             query.put("name", name);
         }

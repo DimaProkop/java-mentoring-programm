@@ -3,7 +3,9 @@ package com.inst.hibernate.util.nosql;
 import com.inst.hibernate.domain.Account;
 import com.inst.hibernate.domain.Client;
 import com.mongodb.BasicDBObject;
+import org.bson.types.ObjectId;
 
+import java.nio.ByteBuffer;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -14,6 +16,8 @@ public class WrapperService {
 
     public static Account accountFromMongoObject(BasicDBObject object) {
         Account account = new Account();
+        ObjectId id = (ObjectId) object.get("_id");
+        account.setId(ByteBuffer.wrap(id.toByteArray()).getLong());
         account.setMoney((Integer) object.get("money"));
         Client client = new Client();
         client.setName((String) object.get("client"));
@@ -23,6 +27,8 @@ public class WrapperService {
 
     public static Client clientFromMongoObject(BasicDBObject object) {
         Client client = new Client();
+        ObjectId id = (ObjectId) object.get("_id");
+        client.setId(ByteBuffer.wrap(id.toByteArray()).getLong());
         client.setName((String) object.get("name"));
         client.setAccounts(getAccountsFromMongoObjects((List<BasicDBObject>) object.get("accounts")));
         return client;

@@ -19,7 +19,7 @@ import java.util.List;
  */
 @Entity
 @Table(name = "client")
-public class Client extends PersistObject implements Serializable {
+public class Client extends PersistObject implements Serializable, Cloneable {
 
     private static final Logger logger = LogManager.getLogger(Client.class);
 
@@ -51,6 +51,9 @@ public class Client extends PersistObject implements Serializable {
     }
 
     public List<Account> getAccounts() {
+        if (accounts == null) {
+            accounts = new ArrayList<>();
+        }
         return accounts;
     }
 
@@ -83,5 +86,16 @@ public class Client extends PersistObject implements Serializable {
             }
         }
         return account;
+    }
+
+    @Override
+    public Client clone() {
+        try {
+            return (Client) super.clone();
+        } catch (CloneNotSupportedException ex) {
+            logger.info(ex.getMessage());
+            logger.error(ex.getMessage(), ex);
+            throw new InternalError();
+        }
     }
 }

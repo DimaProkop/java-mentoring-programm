@@ -16,7 +16,7 @@ public interface AccountService {
 
     void update(Account oldAccount, Account account);
 
-    void delete(final Account account);
+    void delete(Account account);
 
     Account get(Long id, String name);
 

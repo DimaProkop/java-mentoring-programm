@@ -19,7 +19,7 @@ public interface Initializer {
 
     void deleteAccount(final Account account);
 
-    void updateAccount(final Account oldAccount,final Account account);
+    void updateAccount(final Account oldAccount, final Account account);
 
     Account getAccount(final Long id,final String name);
 
@@ -27,7 +27,7 @@ public interface Initializer {
 
     void addClient(final Client client);
 
-    void updateClient(final Client oldClient,final Client client);
+    void updateClient(final Client oldClient,Client client);
 
     void deleteClient(final Client client);
 

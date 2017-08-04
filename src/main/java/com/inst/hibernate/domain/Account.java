@@ -15,7 +15,7 @@ import java.io.Serializable;
  */
 @Entity
 @Table(name = "account")
-public class Account extends PersistObject implements Serializable {
+public class Account extends PersistObject implements Serializable, Cloneable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -53,10 +53,22 @@ public class Account extends PersistObject implements Serializable {
     }
 
     public Client getClient() {
+        if(client == null) {
+            client = new Client();
+        }
         return client;
     }
 
     public void setClient(Client client) {
         this.client = client;
+    }
+
+    @Override
+    public Account clone() {
+        try {
+            return (Account) super.clone();
+        } catch (CloneNotSupportedException ex) {
+            throw new InternalError();
+        }
     }
 }

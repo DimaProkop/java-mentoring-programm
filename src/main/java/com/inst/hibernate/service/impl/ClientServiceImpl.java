@@ -15,6 +15,7 @@ import org.hibernate.Transaction;
 
 import java.util.List;
 
+import static com.inst.hibernate.util.nosql.WrapperService.accountToMongoObject;
 import static com.inst.hibernate.util.nosql.WrapperService.clientToMongoObject;
 import static com.inst.hibernate.util.nosql.WrapperService.clientFromMongoObject;
 import static com.inst.hibernate.util.nosql.WrapperService.getClientsFromMongoObjects;
@@ -30,7 +31,7 @@ public class ClientServiceImpl implements ClientService {
     private AccountRepository accountRepository;
     private ClientMongoRepositoryImpl clientMongoRepository;
     private AccountMongoRepositoryImpl accountMongoRepository;
-    private boolean flag;
+    private static boolean flag;
 
     public ClientServiceImpl(final ClientRepository clientRepository, final AccountRepository accountRepository,
                              final ClientMongoRepositoryImpl clientMongoRepository, final AccountMongoRepositoryImpl accountMongoRepository) {
@@ -107,13 +108,20 @@ public class ClientServiceImpl implements ClientService {
     public void addAccount(final Account account, final Client client) {
         Session session = SessionManager.getInstance().getSession();
         Transaction transaction = session.beginTransaction();
+        Client clone = client.clone();
         try {
             if (account.getId() == null) {
+                accountMongoRepository.add(accountToMongoObject(account));
                 accountRepository.add(session, account);
                 transaction.commit();
             } else {
-                accountRepository.update(session, client.addAccount(account));
+                Account oldAccount = account.clone();
+                Account newAccount = client.addAccount(account);
+                accountMongoRepository.update(accountToMongoObject(oldAccount),
+                        accountToMongoObject(newAccount));
+                accountRepository.update(session, newAccount);
             }
+            clientMongoRepository.update(clientToMongoObject(clone), clientToMongoObject(client));
             clientRepository.update(session, client);
             transaction.commit();
         } catch (Exception e) {
