@@ -5,8 +5,8 @@
 2. ~~Java: Multithreading - classic model and concurrency~~
 3. ~~Design and Architecture: Principle of software development~~
 4. ~~Java: Hibernate (JPA)~~
-5. Code quality & testing (unit, module, integration)
-6. SQL/NoSQL
+5. ~~Code quality & testing (unit, module, integration)~~
+6. ~~SQL/NoSQL~~
 7. Java: Web-Services
 8. Infrastructure: Build: Maven, Gradle
 9. Design and Architecture: Design Patterns
