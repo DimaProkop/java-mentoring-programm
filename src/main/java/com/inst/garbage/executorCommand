@@ -1,0 +1,1 @@
+java -Xms2M -Xmx18M -Xmn1M -XX:PermSize24M -XX:MaxPermSize36M -XX:+UseSerialGC -jar hey.jar
